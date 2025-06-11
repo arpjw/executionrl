@@ -40,15 +40,25 @@ bool MarketEnvironment::isDone() const {
 }
 
 void MarketEnvironment::loadMarketData() {
-    std::ifstream file("prices.csv");
+    std::ifstream file(DATA_PATH);
     std::string line;
 
     prices.clear();
+    bool firstLine = true;
     while (std::getline(file, line)) {
+        if (firstLine) { // skip header if present
+            firstLine = false;
+            if (line.find_first_not_of("0123456789-.") != std::string::npos)
+                continue;
+        }
         std::stringstream ss(line);
         std::string cell;
         if (std::getline(ss, cell, ',')) {
-            prices.push_back(std::stod(cell));
+            try {
+                prices.push_back(std::stod(cell));
+            } catch (const std::invalid_argument&) {
+                // ignore malformed lines
+            }
         }
     }
 
