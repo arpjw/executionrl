@@ -14,18 +14,18 @@ include_directories(
 )
 
 # === Source files ===
-set(SOURCE_FILES
-        src/main.cpp
-
+set(LIB_SOURCES
         include/agents/QLearningAgent.cpp
         include/core/ExecutionSimulator.cpp
         include/env/MarketEnvironment.cpp
         include/utils/Logger.cpp
-        include/utils/MathUtils.cpp
-)
+        include/utils/MathUtils.cpp)
 
-# === Executable ===
-add_executable(ExecutionRL ${SOURCE_FILES})
+add_library(executionrl_lib ${LIB_SOURCES})
+target_include_directories(executionrl_lib PUBLIC include)
+
+add_executable(ExecutionRL src/main.cpp)
+target_link_libraries(ExecutionRL PRIVATE executionrl_lib)
 
 # === Tests ===
 enable_testing()
@@ -34,9 +34,9 @@ add_executable(test_agent tests/test_agent.cpp)
 add_executable(test_env tests/test_env.cpp)
 add_executable(test_simulation tests/test_simulation.cpp)
 
-target_include_directories(test_agent PRIVATE include)
-target_include_directories(test_env PRIVATE include)
-target_include_directories(test_simulation PRIVATE include)
+target_link_libraries(test_agent PRIVATE executionrl_lib)
+target_link_libraries(test_env PRIVATE executionrl_lib)
+target_link_libraries(test_simulation PRIVATE executionrl_lib)
 
 add_test(NAME AgentTest COMMAND test_agent)
 add_test(NAME EnvTest COMMAND test_env)
