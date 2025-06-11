@@ -26,6 +26,7 @@ target_include_directories(executionrl_lib PUBLIC include)
 
 add_executable(ExecutionRL src/main.cpp)
 target_link_libraries(ExecutionRL PRIVATE executionrl_lib)
+target_include_directories(ExecutionRL PRIVATE include)
 
 # === Tests ===
 enable_testing()
