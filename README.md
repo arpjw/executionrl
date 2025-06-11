@@ -21,7 +21,7 @@ executionrl/
 
 ---
 
-## ⚙how it works
+## how it works
 
 the simulator trains an agent to optimally execute trades by interacting with a synthetic market. the agent receives state observations (price movement, position, time) and learns a policy using q-learning.
 
