@@ -4,7 +4,7 @@ ExecutionSimulator::ExecutionSimulator(MarketEnvironment& env, QLearningAgent& a
     : env(env), agent(agent) {}
 
 void ExecutionSimulator::run(int episodes) {
-    for (int i = 0; i < episodes; ++i) {
+    for (int episode = 0; episode < episodes; ++episode) {
         env.reset();
         while (!env.isDone()) {
             auto state = env.getState();

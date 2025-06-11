@@ -40,34 +40,24 @@ bool MarketEnvironment::isDone() const {
 }
 
 void MarketEnvironment::loadMarketData() {
-    std::ifstream file(DATA_PATH);
+    std::ifstream file("data/price_series.csv");
     if (!file.is_open()) {
         file.open("../data/price_series.csv");
     }
     std::string line;
 
     prices.clear();
-
-    // Skip header line if present
-    if (std::getline(file, line)) {
-        if (line.find("price") == std::string::npos) {
-            std::stringstream ss(line);
-            std::string timestamp, priceStr;
-            if (std::getline(ss, timestamp, ',') && std::getline(ss, priceStr, ',')) {
-                prices.push_back(std::stod(priceStr));
-            }
-        }
-    }
-
     while (std::getline(file, line)) {
         std::stringstream ss(line);
-        std::string timestamp, priceStr;
-        if (std::getline(ss, timestamp, ',') && std::getline(ss, priceStr, ',')) {
-            try {
-                prices.push_back(std::stod(priceStr));
-            } catch (const std::exception& e) {
-                std::cerr << "Invalid price value: " << priceStr << "\n";
-            }
+        std::string first, second;
+        if (!std::getline(ss, first, ','))
+            continue;
+        if (!std::getline(ss, second, ','))
+            continue;
+        try {
+            prices.push_back(std::stod(second));
+        } catch (const std::invalid_argument&) {
+            // likely a header line, skip
         }
     }
 
