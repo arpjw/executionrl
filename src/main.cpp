@@ -1,6 +1,6 @@
-#include "include/core/ExecutionSimulator.hpp"
-#include "include/env/MarketEnvironment.hpp"
-#include "include/agents/QLearningAgent.hpp"
+#include "core/ExecutionSimulator.hpp"
+#include "env/MarketEnvironment.hpp"
+#include "agents/QLearningAgent.hpp"
 
 int main() {
     MarketEnvironment env;

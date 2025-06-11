@@ -40,15 +40,24 @@ bool MarketEnvironment::isDone() const {
 }
 
 void MarketEnvironment::loadMarketData() {
-    std::ifstream file("prices.csv");
+    std::ifstream file("data/price_series.csv");
+    if (!file.is_open()) {
+        file.open("../data/price_series.csv");
+    }
     std::string line;
 
     prices.clear();
     while (std::getline(file, line)) {
         std::stringstream ss(line);
-        std::string cell;
-        if (std::getline(ss, cell, ',')) {
-            prices.push_back(std::stod(cell));
+        std::string first, second;
+        if (!std::getline(ss, first, ','))
+            continue;
+        if (!std::getline(ss, second, ','))
+            continue;
+        try {
+            prices.push_back(std::stod(second));
+        } catch (const std::invalid_argument&) {
+            // likely a header line, skip
         }
     }
 

@@ -8,7 +8,7 @@
 class ExecutionSimulator {
 public:
     ExecutionSimulator(MarketEnvironment& env, QLearningAgent& agent);
-    void run();
+    void run(int episodes = 1);
 
 private:
     MarketEnvironment& env;
