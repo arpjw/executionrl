@@ -1,6 +1,6 @@
 # executionrl 
 
-**executiorl** is a high-level C++ simulator that models **optimal trade execution** using **reinforcement learning**. it uses a q-learning agent trained in a simulated market environment to decide when to buy, sell, or hold in order to minimize execution cost and maximize reward.
+**executionrl** is a high-level C++ simulator that models **optimal trade execution** using **reinforcement learning**. it uses a q-learning agent trained in a simulated market environment to decide when to buy, sell, or hold in order to minimize execution cost and maximize reward.
 
 ---
 
