@@ -1,7 +1,7 @@
-#include "../include/core/ExecutionSimulator.hpp"
-#include "../include/env/MarketEnvironment.hpp"
-#include "../include/agents/QLearningAgent.hpp"
-#include "../include/config.hpp"
+#include "core/ExecutionSimulator.hpp"
+#include "env/MarketEnvironment.hpp"
+#include "agents/QLearningAgent.hpp"
+#include "config.hpp"
 #include <iostream>
 
 int main() {

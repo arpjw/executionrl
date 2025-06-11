@@ -40,7 +40,7 @@ bool MarketEnvironment::isDone() const {
 }
 
 void MarketEnvironment::loadMarketData() {
-    std::ifstream file("data/price_series.csv");
+    std::ifstream file(DATA_PATH);
     if (!file.is_open()) {
         file.open("../data/price_series.csv");
     }

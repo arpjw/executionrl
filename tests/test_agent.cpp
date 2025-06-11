@@ -1,4 +1,4 @@
-#include "../include/agents/QLearningAgent.hpp"
+#include "agents/QLearningAgent.hpp"
 #include <cassert>
 #include <iostream>
 
